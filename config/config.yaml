@@ -1,0 +1,34 @@
+app:
+  name: "Mattermost Vote Bot"
+  version: "1.0.0"
+  default_vote_duration: "24h"
+  max_poll_options: 10
+
+server:
+  host: "0.0.0.0"
+  port: 8080
+  read_timeout: "5s"
+  write_timeout: "10s"
+  shutdown_timeout: "15s"
+
+database:
+  tarantool:
+    host: "tarantool"
+    port: 3301
+    user: "guest"
+    password: ""
+    timeout: "3s"
+    reconnect_delay: "5s"
+    max_reconnects: 3
+    spaces:
+      polls: "polls"
+      votes: "votes"
+
+logging:
+  level: "info"
+  format: "json"
+
+mattermost:
+  bot_token: "your_bot_token"
+  bot_id: "your_bot_id"
+  webhook_path: "/webhook"
