@@ -1,0 +1,11 @@
+mattermost:
+  url: "https://your-mattermost-server.com"
+  token: "your-bot-token"
+  team: "your-team-name"
+  channel: "your-channel-name"
+  username: "your-bot-username"
+
+tarantool:
+  address: "tarantool:3301"
+  user: "admin"
+  password: "password"

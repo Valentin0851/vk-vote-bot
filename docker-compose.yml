@@ -1,14 +1,11 @@
 version: '3.8'
 
 services:
-  app:
+  bot:
     build: .
-    ports:
-      - "8080:8080"
     environment:
-      - TARANTOOL_HOST=tarantool
-      - MATTERMOST_BOT_TOKEN=${MATTERMOST_BOT_TOKEN}
-      - MATTERMOST_BOT_ID=${MATTERMOST_BOT_ID}
+      - MM_URL=${MM_URL}
+      - MM_TOKEN=${MM_TOKEN}
     depends_on:
       - tarantool
     restart: unless-stopped
@@ -18,5 +15,11 @@ services:
     ports:
       - "3301:3301"
     volumes:
-      - ./init.lua:/opt/tarantool/init.lua
-    restart: unless-stopped
+      - tarantool_data:/var/lib/tarantool
+    environment:
+      - TARANTOOL_USER=admin
+      - TARANTOOL_PASSWORD=password
+    command: tarantool /opt/tarantool/init.lua
+
+volumes:
+  tarantool_data:
